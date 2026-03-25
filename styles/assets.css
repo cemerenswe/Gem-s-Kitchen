@@ -1,0 +1,19 @@
+.header img {
+    height: 36px;
+}
+
+.header img:hover{
+    cursor: pointer;
+}
+
+.logo-overlay {
+    height: 150px;
+    border-radius: 50%;
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 3px solid #D4AF37;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
