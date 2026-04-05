@@ -25,26 +25,42 @@ let kebapDishes = [
     }
 ]
 
-function renderKebapDishes() {
-    let kebapContent = document.getElementById('kebap-dishes');
-    kebapContent.innerHTML = "";
+let dueruemDishes = [
+    {
+        "name": "Dürüm Kalb",
+        "description": "Dürüm mit 200gr. Kalbfleisch, frischem Gemüse und hausgemachtem Fladenbrot",
+        "price": 6.20,
+        "image": "./assets/img/dueruem-kalb.png"
+    },
+    {
+        "name": "Dürüm Huhn",
+        "description": "Saftiger Hühnerdürüm (200gr.) mit knackigem Salat und Sauce nach Wahl",
+        "price": 6.20,
+        "image": "./assets/img/dueruem-huhn.png"
+    },
+    {
+        "name": "Adana Dürüm",
+        "description": "Würziger Adana-Spieß im Dürüm mit frischem Gemüse und orientalischen Gewürzen",
+        "price": 7.00,
+        "image": "./assets/img/adana-dueruem.png"
+    },
+    {
+        "name": "Spezial Dürüm",
+        "description": "Großer Dürüm mit Kalbfleisch, extra Zutaten und hausgemachter Sauce",
+        "price": 8.00,
+        "image": "./assets/img/dueruem-spezial.png"
+    }
+]
 
-    for (let kebapDishesIndex = 0; kebapDishesIndex < kebapDishes.length; kebapDishesIndex++) {
-        let kebapDish = kebapDishes[kebapDishesIndex];
-        
-        kebapContent.innerHTML += `
-            <div class="dish">
-                <img src="${kebapDish.image}" alt="Kalbs Kebap">
-                <div>
-                    <h3>${kebapDish.name}</h3>
-                    <p>${kebapDish.description}</p>
-                    <span class="price">${kebapDish.price.toFixed(2)} €</span>
-                </div>
-            </div>
-            `
-        }
+function renderDishes(id, dishesObj) {
+    let dishContainer = document.getElementById(id);
+    dishContainer.innerHTML = "";
+
+    dishesObj.forEach((dish, index) => {
+        dishContainer.innerHTML += dishTemplate(dish, index)
+    });
 }
 
+renderDishes("kebap-dishes", kebapDishes);
+renderDishes("dürüm-dishes", dueruemDishes);
 
-
-renderKebapDishes()
