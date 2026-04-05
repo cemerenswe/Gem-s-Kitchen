@@ -40,9 +40,43 @@ main p {
     padding: 0 64px;
     gap: 24px;
     margin-top: 24px;
-    margin-bottom: 24px;
+    margin-bottom: 0;
 }
 
 .section-headers img {
     height: 100px
+}
+
+#kebap-dishes {
+   
+}
+
+.dish {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    margin: 8px 64px;
+    border-bottom: 1px solid #eee; 
+    background-color: #F5F5DC;
+    width: 80%;
+    border-radius: 8px;
+    position: relative;
+}
+
+.dish p {
+    margin: 4px 0 0 0;
+    color: #666
+}
+
+.dish h3 {
+    margin: 0; 
+}
+
+.dish img {
+    height: 100px;
+}
+
+.price {
+    position: absolute;
 }
