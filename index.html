@@ -45,9 +45,35 @@
                     
                 </div>
             </section>
+            <section class="kebap-section">
+                <header class="section-headers">
+                    <img src="./assets/icons/beilagen.png" alt="">
+
+                    <h2>Beilagen</h2>
+                </header>
+                <div id="side-dishes">
+                    
+                </div>
+            </section>
         </section>
+        <button class="dialog-button" onclick="openDialog()">Warenkorb anzeigen</button>
     </main>
-    <script src="./script.js"></script>
+    <footer class="main-footer">
+        <p>©Copyright Gems Kitchen 2026</p>
+        <p>|</p>
+        <p>Cookie Preferences</p>
+    </footer>
+    <dialog id="basket-dialog">
+        <header>
+            <h2>Dein Warenkorb</h2>
+        </header>
+        <div id="basket-container"></div>
+        <footer>
+            <button onclick="closeDialog()">Schließen</button>
+            <button onclick="closeDialog()">Bestellung aufgeben</button>
+        </footer>
+    </dialog>
 </body>
+<script src="./script.js"></script>
 </html>
 

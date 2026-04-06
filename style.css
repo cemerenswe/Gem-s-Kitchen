@@ -1,5 +1,5 @@
 .header {
-    height: 56px;
+    height: 64px;
     background-color: #D4AF37;
     display: flex;
     justify-content: space-between;
@@ -70,7 +70,7 @@ main p {
     color: #222;
 }
 
-.dish img {
+.dish-img {
     height: 100px;
     border-radius: 50%;
 }
@@ -79,11 +79,57 @@ main p {
     position: absolute;
     top: 0;
     right: 0;
-    margin: 16px;
+    padding: 16px;
     color: #333;
     font-weight: 600;
 }
 
-.add-basket button {
-    border: #D4AF37 1px solid;
+.main-footer {
+    height: 64px;
+    background-color: #D4AF37;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 56px;
+    color: white;
+    gap: 8px
+}
+
+.add-basket {
+    width: 32px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    bottom: 50%;
+    margin: 16px;
+    cursor: pointer;
+}
+
+.add-basket:hover {
+    background: #D4AF37;
+    border-radius: 50%;
+}
+
+.add-basket:active {
+    background: #be9d30;
+}
+
+.dialog-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    background: #be9d30;
+    border-radius: 8px;
+    height: 32px;
+    color: white;
+    border: #666 1px solid;
+}
+
+.open-dialog-button:hover {
+    background: #D4AF37;
+}
+
+#basket-dialog .dialog-button {
+    
 }

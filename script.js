@@ -52,6 +52,35 @@ let dueruemDishes = [
     }
 ]
 
+let sideDishes = [
+    {
+        "name": "Pommes Frites",
+        "description": "Knusprig goldene Pommes, frisch frittiert und leicht gesalzen.",
+        "price": 3.50,
+        "image": "./assets/img/pommes.jpg"
+    },
+    {
+        "name": "Reis",
+        "description": "Locker gekochter Basmatireis, perfekt als Beilage.",
+        "price": 2.90,
+        "image": "./assets/img/reis.jpg"
+    },
+    {
+        "name": "Gemischter Salat",
+        "description": "Frischer Salat mit Tomaten, Gurken und Hausdressing.",
+        "price": 4.20,
+        "image": "./assets/img/salat.jpg"
+    },
+    {
+        "name": "Ofenkartoffeln",
+        "description": "Würzige Kartoffelspalten aus dem Ofen mit Kräutern.",
+        "price": 3.80,
+        "image": "./assets/img/ofenkartoffel.jpg"
+    }
+]
+
+let basket = []
+
 function renderDishes(id, dishesObj) {
     let dishContainer = document.getElementById(id);
     dishContainer.innerHTML = "";
@@ -61,6 +90,69 @@ function renderDishes(id, dishesObj) {
     });
 }
 
+function addToBasket(index, name, price) {
+    let existingItem = basket.find(item => item.name === name);
+
+    if (existingItem) {
+        existingItem.amount++;
+    } else {
+        basket.push({
+            name: name,
+            price: price,
+            amount: 1
+        });
+    }
+    renderBasket();
+}
+
+function openDialog(){
+    document.getElementById("basket-dialog").showModal()
+}
+
+function closeDialog(){
+    document.getElementById("basket-dialog").close()
+}
+
+function renderBasket(){
+    let basketContainer = document.getElementById('basket-container');
+
+    basketContainer.innerHTML = "";
+
+    basket.forEach((item, basketIndex) => {
+        basketContainer.innerHTML += `
+            <div>
+                ${item.name} - ${(item.price * item.amount).toFixed(2)} €
+
+                <img src="./assets/icons/minus.png" 
+                onclick="amountDown(${basketIndex})" 
+                class="basket-btn">
+
+                ${item.amount}
+
+                <img src="./assets/icons/plus.png" 
+                onclick="amountUp(${basketIndex})" 
+                class="basket-btn">
+            </div>
+        `
+    })
+}
+
+function amountUp(basketIndex){
+    basket[basketIndex].amount++;
+    renderBasket();
+}
+
+function amountDown(basketIndex){
+    if (basket[basketIndex].amount > 1) {
+        basket[basketIndex].amount--;
+    } else {
+        basket.splice(basketIndex, 1);
+    }
+    renderBasket();
+}
+
 renderDishes("kebap-dishes", kebapDishes);
 renderDishes("dürüm-dishes", dueruemDishes);
+renderDishes("side-dishes", sideDishes);
+
 
