@@ -63,15 +63,17 @@
         <p>|</p>
         <p>Cookie Preferences</p>
     </footer>
-    <dialog id="basket-dialog">
+    <dialog class="basket-dialog" id="basket-dialog">
+        <div class="dialog-content">
         <header>
             <h2>Dein Warenkorb</h2>
         </header>
-        <div id="basket-container"></div>
+        <div class="basket-container" id="basket-container"></div>
         <footer>
-            <button onclick="closeDialog()">Schließen</button>
-            <button onclick="closeDialog()">Bestellung aufgeben</button>
+            <button id="close-btn">Schließen</button>
+            <button id="order-btn">Bestellung aufgeben</button>
         </footer>
+        </div>
     </dialog>
 </body>
 <script src="./script.js"></script>

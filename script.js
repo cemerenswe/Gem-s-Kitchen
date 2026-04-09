@@ -102,7 +102,7 @@ function addToBasket(index, name, price) {
             amount: 1
         });
     }
-    renderBasket();
+    updateAll();
 }
 
 function openDialog(){
@@ -119,19 +119,36 @@ function renderBasket(){
     basketContainer.innerHTML = "";
 
     basket.forEach((item, basketIndex) => {
-        basketContainer.innerHTML += `
-            <div>
-                ${item.name} - ${(item.price * item.amount).toFixed(2)} €
 
-                <img src="./assets/icons/minus.png" 
-                onclick="amountDown(${basketIndex})" 
-                class="basket-btn">
+        let buttonLeft;
+
+        if (item.amount === 1) {
+            buttonLeft = `
+                <img src="./assets/icons/delete.png"
+                     onclick="amountDown(${basketIndex})"
+                     class="basket-btn">
+            `;
+        } else {
+            buttonLeft = `
+                <button onclick="amountDown(${basketIndex})"
+                        class="basket-btn">
+                    -
+                </button>
+            `;
+        }
+
+        basketContainer.innerHTML += `
+            <div class="layout-dialog">
+                <div>${item.name} - ${(item.price * item.amount).toFixed(2)} € </div>
+
+                <div>${buttonLeft}
 
                 ${item.amount}
 
-                <img src="./assets/icons/plus.png" 
-                onclick="amountUp(${basketIndex})" 
+                <button onclick="amountUp(${basketIndex})"
                 class="basket-btn">
+                +
+                </button></div>
             </div>
         `
     })
@@ -139,7 +156,7 @@ function renderBasket(){
 
 function amountUp(basketIndex){
     basket[basketIndex].amount++;
-    renderBasket();
+    updateAll();
 }
 
 function amountDown(basketIndex){
@@ -148,8 +165,47 @@ function amountDown(basketIndex){
     } else {
         basket.splice(basketIndex, 1);
     }
-    renderBasket();
+    updateAll();
 }
+
+function getAmountFromBasket(name){
+    let item = basket.find(item => item.name === name);
+    
+    if (item) {
+        return item.amount;
+    } else {
+        return 0;
+    }
+}
+
+function amountUpByName(name) {
+    let item = basket.find(item => item.name === name);
+    if (item) {
+        item.amount++;
+    }
+    updateAll();
+}
+
+function amountDownByName(name) {
+    let index = basket.findIndex(item => item.name === name);
+
+    if (basket[index].amount > 1) {
+        basket[index].amount--;
+    } else {
+        basket.splice(index, 1);
+    }
+
+    updateAll();
+}
+
+function updateAll() {
+    renderBasket();
+    renderDishes("kebap-dishes", kebapDishes);
+    renderDishes("dürüm-dishes", dueruemDishes);
+    renderDishes("side-dishes", sideDishes);
+}
+
+
 
 renderDishes("kebap-dishes", kebapDishes);
 renderDishes("dürüm-dishes", dueruemDishes);
