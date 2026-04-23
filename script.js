@@ -106,11 +106,17 @@ function addToBasket(index, name, price) {
 }
 
 function openDialog(){
-    document.getElementById("basket-dialog").showModal()
+    let dialog = document.getElementById("basket-dialog");
+
+    if (!dialog.open) {
+        dialog.showModal();
+    }
 }
 
-function closeDialog(){
-    document.getElementById("basket-dialog").close()
+function closeDialog() {
+    const dialog = document.getElementById("basket-dialog");
+
+        dialog.close();
 }
 
 function renderBasket(){
@@ -211,4 +217,6 @@ renderDishes("kebap-dishes", kebapDishes);
 renderDishes("dürüm-dishes", dueruemDishes);
 renderDishes("side-dishes", sideDishes);
 
+document.getElementById("close-btn").addEventListener("click", closeDialog);
+document.getElementById("order-btn").addEventListener("click", closeDialog);
 
