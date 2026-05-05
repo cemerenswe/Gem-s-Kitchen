@@ -158,6 +158,16 @@ function renderBasket(){
             </div>
         `
     })
+
+    let prices = calculateTotal();
+
+    basketContainer.innerHTML += `
+        <div class="price-summary">
+            <div>Zwischensumme: ${prices.subtotal.toFixed(2)} €</div>
+            <div>Lieferkosten: ${prices.deliveryFee.toFixed(2)} €</div>
+            <div class="total-price">Gesamt: ${prices.total.toFixed(2)} €</div>
+        </div>
+    `;
 }
 
 function amountUp(basketIndex){
@@ -211,12 +221,51 @@ function updateAll() {
     renderDishes("side-dishes", sideDishes);
 }
 
+function calculateTotal() {
+    let subtotal = basket.reduce((sum, item) => {
+        return sum + item.price * item.amount;
+    }, 0);
 
+    let deliveryFee = subtotal > 0 ? 2.50 : 0; // nur wenn etwas im Warenkorb
+
+    let total = subtotal + deliveryFee;
+
+    return {
+        subtotal: subtotal,
+        deliveryFee: deliveryFee,
+        total: total
+    };
+}
+
+function showOrderPopup() {
+    let popup = document.getElementById("order-popup");
+
+    popup.classList.add("show");
+
+    setTimeout(() => {
+        popup.classList.remove("show");
+    }, 2000);
+}
+
+function closePopup() {
+    let popup = document.getElementById("order-popup");
+    popup.classList.remove("show");
+}
 
 renderDishes("kebap-dishes", kebapDishes);
 renderDishes("dürüm-dishes", dueruemDishes);
 renderDishes("side-dishes", sideDishes);
 
 document.getElementById("close-btn").addEventListener("click", closeDialog);
-document.getElementById("order-btn").addEventListener("click", closeDialog);
+document.getElementById("order-btn").addEventListener("click", () => {
+    if (basket.length === 0) {
+        alert("Dein Warenkorb ist leer!");
+    } else {
+        closeDialog();
+        showOrderPopup();
+
+        basket = [];
+        updateAll();
+    }
+});
 
