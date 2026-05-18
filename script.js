@@ -105,24 +105,19 @@ function addToBasket(index, name, price) {
     updateAll();
 }
 
-function openDialog(){
-    let dialog = document.getElementById("basket-dialog");
-
-    if (!dialog.open) {
-        dialog.showModal();
-    }
-}
-
-function closeDialog() {
-    const dialog = document.getElementById("basket-dialog");
-
-        dialog.close();
-}
-
 function renderBasket(){
     let basketContainer = document.getElementById('basket-container');
 
     basketContainer.innerHTML = "";
+
+    if (basket.length === 0) {
+        basketContainer.innerHTML = `
+            <div class="empty-basket">
+                <p>🛒 Dein Warenkorb ist leer</p>
+            </div>
+        `;
+        return;
+    }
 
     basket.forEach((item, basketIndex) => {
 
@@ -252,18 +247,22 @@ function closePopup() {
     popup.classList.remove("show");
 }
 
+function toggleBasket() {
+    document.getElementById("basket-sidebar")
+        .classList.toggle("open");
+}
+
 renderDishes("kebap-dishes", kebapDishes);
 renderDishes("dürüm-dishes", dueruemDishes);
 renderDishes("side-dishes", sideDishes);
 
-document.getElementById("close-btn").addEventListener("click", closeDialog);
+renderBasket()
+
 document.getElementById("order-btn").addEventListener("click", () => {
     if (basket.length === 0) {
         alert("Dein Warenkorb ist leer!");
     } else {
-        closeDialog();
         showOrderPopup();
-
         basket = [];
         updateAll();
     }

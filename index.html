@@ -61,25 +61,42 @@
                 </div>
             </section>
         </section>
-        <button class="dialog-button" onclick="openDialog()">Warenkorb anzeigen</button>
     </main>
     <footer class="main-footer">
         <p>©Copyright Gems Kitchen 2026</p>
         <p>|</p>
         <p>Cookie Preferences</p>
     </footer>
-    <dialog class="basket-dialog" id="basket-dialog">
-        <div class="dialog-content">
+    <div class="basket-sidebar" id="basket-sidebar">
         <header>
             <h2>Dein Warenkorb</h2>
+
+            <button class="close-basket" onclick="toggleBasket()">
+                ✖
+            </button>
         </header>
         <div class="basket-container" id="basket-container"></div>
-        <footer>
-            <button id="close-btn">Schließen</button>
+        <footer class="basket-footer">
             <button id="order-btn">Bestellung aufgeben</button>
         </footer>
-        </div>
-    </dialog>
+    </div>
+    <div class="mobile-nav">
+    <div class="nav-item">
+        <img src="./assets/icons/home.png" alt="Home">
+    </div>
+
+    <div class="nav-item">
+        <img src="./assets/icons/profile.png" alt="Konto">
+    </div>
+
+    <div class="nav-item">
+        <img src="./assets/icons/orders.png" alt="Bestellungen">
+    </div>
+
+    <div class="nav-item" onclick="toggleBasket()">
+        <img src="./assets/icons/basket.png" alt="Warenkorb">
+    </div>
+</div>
     <div id="order-popup" class="order-popup">
     <span class="close-popup" onclick="closePopup()">✖</span>
     <span id="popup-text">✅ Deine Bestellung ist eingegangen!</span>
